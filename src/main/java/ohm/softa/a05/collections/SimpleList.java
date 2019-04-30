@@ -66,7 +66,8 @@ public interface SimpleList<T> extends Iterable<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	default <R> SimpleList<R> map(Function<T,R> transform) {
+	/*Will von T auf R mappen; R consumer also eigentlich super, aber wenn bei T extends (alles was drunter ist) */
+	default <R> SimpleList<R> map(Function<? super T,? extends R> transform) {
 		SimpleList<R> result;
 		try {
 			result = (SimpleList<R>) getClass().newInstance();
